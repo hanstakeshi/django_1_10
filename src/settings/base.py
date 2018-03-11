@@ -36,7 +36,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+LOCAL_APPS = [
+    'apps.web',
+]
+
+THIRD_PART_APPS = [
+    'filebrowser',
+    'ckeditor',
+]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PART_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,7 +70,7 @@ ROOT_URLCONF = 'urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,4 +138,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+# STATIC and MEDIA
 STATIC_URL = '/static/'
+STATIC_ROOT = ''
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# EMAIL
+EMAIL_HOST = ENV.get('EMAIL_HOST', '')
+EMAIL_HOST_USER = ENV.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = str(ENV.get('EMAIL_HOST_PASSWORD', ''))
+DEFAULT_FROM_EMAIL = ENV.get('DEFAULT_FROM_EMAIL', '')
+SERVER_EMAIL = ENV.get('SERVER_EMAIL', '')
+EMAIL_PORT = ENV.get('EMAIL_PORT', '')
+EMAIL_USE_TLS = True
