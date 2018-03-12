@@ -156,3 +156,19 @@ DEFAULT_FROM_EMAIL = ENV.get('DEFAULT_FROM_EMAIL', '')
 SERVER_EMAIL = ENV.get('SERVER_EMAIL', '')
 EMAIL_PORT = ENV.get('EMAIL_PORT', '')
 EMAIL_USE_TLS = True
+
+CKEDITOR_JQUERY_URL = '{}admin/js/vendor/jquery/jquery.js'.format(STATIC_URL)
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [["Bold", "Italic", "Underline"],
+            # ['TextColor', 'BGColor', '-', 'Rule'],
+            ['NumberedList', 'BulletedList'],
+            # ["Image", "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], ['Undo', 'Redo'], ["Source"],
+            ["Maximize"]],
+        # 'height': 300,
+        # 'width': 300,
+        # "removePlugins": "Bold",
+    },
+}
